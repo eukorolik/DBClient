@@ -45,9 +45,9 @@
             this.WhichDBLabel.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.WhichDBLabel.Location = new System.Drawing.Point(13, 13);
             this.WhichDBLabel.Name = "WhichDBLabel";
-            this.WhichDBLabel.Size = new System.Drawing.Size(117, 20);
+            this.WhichDBLabel.Size = new System.Drawing.Size(129, 20);
             this.WhichDBLabel.TabIndex = 0;
-            this.WhichDBLabel.Text = "Выберите базу";
+            this.WhichDBLabel.Text = "Select a database";
             // 
             // WhichTable
             // 
@@ -55,9 +55,9 @@
             this.WhichTable.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.WhichTable.Location = new System.Drawing.Point(13, 45);
             this.WhichTable.Name = "WhichTable";
-            this.WhichTable.Size = new System.Drawing.Size(145, 20);
+            this.WhichTable.Size = new System.Drawing.Size(101, 20);
             this.WhichTable.TabIndex = 1;
-            this.WhichTable.Text = "Выберите таблицу";
+            this.WhichTable.Text = "Select a table";
             // 
             // DBSelect
             // 
@@ -79,6 +79,7 @@
             // 
             // ResultTable
             // 
+            this.ResultTable.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.ResultTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ResultTable.Location = new System.Drawing.Point(17, 82);
             this.ResultTable.Name = "ResultTable";
@@ -89,23 +90,24 @@
             // 
             // DataSaveButton
             // 
-            this.DataSaveButton.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DataSaveButton.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.DataSaveButton.Location = new System.Drawing.Point(400, 259);
             this.DataSaveButton.Name = "DataSaveButton";
             this.DataSaveButton.Size = new System.Drawing.Size(95, 29);
             this.DataSaveButton.TabIndex = 5;
-            this.DataSaveButton.Text = "Сохранить";
+            this.DataSaveButton.Text = "Save";
             this.DataSaveButton.UseVisualStyleBackColor = true;
             this.DataSaveButton.Click += new System.EventHandler(this.DataSaveButton_Click);
             // 
             // SQLBtn
             // 
+            this.SQLBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.SQLBtn.Location = new System.Drawing.Point(400, 13);
-            this.SQLBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SQLBtn.Margin = new System.Windows.Forms.Padding(2);
             this.SQLBtn.Name = "SQLBtn";
             this.SQLBtn.Size = new System.Drawing.Size(95, 50);
             this.SQLBtn.TabIndex = 7;
-            this.SQLBtn.Text = "SQL-запросы";
+            this.SQLBtn.Text = "SQL queries";
             this.SQLBtn.UseVisualStyleBackColor = true;
             this.SQLBtn.Click += new System.EventHandler(this.SQLBtn_Click);
             // 

@@ -9,7 +9,6 @@ namespace PoetezClient
     public partial class PoetezClient : Form
     {
         MySqlConnection DBConnection;
-       // FieldInfo[] Fields;
         UpdateData Data;
         QueryWindow QueryWindow;
 
@@ -37,7 +36,7 @@ namespace PoetezClient
         
         protected void ReadDBList()
         {
-             var DBList = DBConnection.GetSchema("Databases");
+             DataTable DBList = DBConnection.GetSchema("Databases");
 
              var DBSelectSourse = new Dictionary<string, string>();
                          
@@ -57,13 +56,13 @@ namespace PoetezClient
             string DBName = ((KeyValuePair<string, string>)DBSelect.SelectedItem).Key;
             var cmd = new MySqlCommand("USE " + DBName, DBConnection);
             cmd.ExecuteNonQuery();
-            SelectTables(cmd);
+            SelectTables();
         }
 
-        protected void SelectTables(MySqlCommand cmd)
+        protected void SelectTables()
         {
-            cmd.CommandText = "SHOW TABLES";
-
+            var cmd = new MySqlCommand("SHOW TABLES", DBConnection);
+            
             var DBTableSelectSourse = new Dictionary<string, string>();
 
             using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -81,28 +80,15 @@ namespace PoetezClient
 
         private void DBTableSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string TableName = ((KeyValuePair<string, string>)DBTableSelect.SelectedItem).Key; 
+            string TableName = ((KeyValuePair<string, string>)DBTableSelect.SelectedItem).Key;
             var cmd = new MySqlCommand("SELECT * FROM " + TableName, DBConnection);
 
             {
                 Data = new UpdateData(cmd);
                 ResultTable.DataSource = new BindingSource(Data.Table, null);
             }
-
-         /*   using (var reader = cmd.ExecuteReader(CommandBehavior.SchemaOnly))
-            {
-                var schema = reader.GetSchemaTable();
-
-                var fields = new List<FieldInfo>();
-
-                foreach (DataRow row in schema.Rows)
-                {
-                    fields.Add(new FieldInfo((bool)row["AllowDBNull"], (bool)row["IsAutoIncrement"]));
-                }
-
-                Fields = fields.ToArray();
-            } */
         }
+
 
         private void DataSaveButton_Click(object sender, EventArgs e)
         {
@@ -113,36 +99,6 @@ namespace PoetezClient
         {
             throw new PoetezClientException(e.Exception.Message);
         }
-
-        private void Focus(DataGridViewCell cell)
-        {
-            ResultTable.CurrentCell = cell;
-            ResultTable.BeginEdit(true);
-        }
-
-       /* struct FieldInfo
-        {
-            public bool IsNullable { private set;  get; }
-            public bool IsAutoIncrement { private set; get; }
-
-            public FieldInfo(bool isNullable, bool isAutoIncrement)
-            {
-                IsNullable = isNullable;
-                IsAutoIncrement = isAutoIncrement;
-            }
-
-            public bool IsValueNull(object value, Type type)
-            {
-                if (IsAutoIncrement)
-                {
-                    return false;
-                }
-
-                return !IsNullable && type != typeof(bool) && (value == null
-                    || value == DBNull.Value
-                    || string.IsNullOrEmpty(value.ToString()));
-            }
-        } */
 
         private void SQLBtn_Click(object sender, EventArgs e)
         {
@@ -169,6 +125,7 @@ namespace PoetezClient
             Adapter.Update(Table);
         }
     }
+
 }
 
 
